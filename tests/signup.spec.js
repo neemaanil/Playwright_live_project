@@ -1,6 +1,6 @@
 import test from "@playwright/test"; 
 import SignupSuccessPage from "../pages/signupsuccess";
-test('Signup Successful', async ({ page }) => { 
+test('@smoke Signup Successful', async ({ page }) => { 
     await page.goto('https://demoblaze.com/');
     const signupSuccessPage = new SignupSuccessPage(page);
     await signupSuccessPage.signup('Neema2', 'Password127');
@@ -17,3 +17,15 @@ test('Signup Successful', async ({ page }) => {
     console.log('Dialog message:', dialog.message());
       
 });  
+test('Signup Unsuccessful', async ({ page }) => { 
+    await page.goto('https://demoblaze.com/');
+    const signupSuccessPage1 = new SignupSuccessPage(page);
+    await signupSuccessPage1.signupUnsuccess('Neema', 'Password123');
+     await page.waitForTimeout(2000); 
+    //await page.locator('#signin2').click(); // click on sign up button
+    //await page.locator('#sign-username').fill('Neema'); // fill username
+    // Add more steps for unsuccessful signup scenario
+   // await page.getByLabel('Password:').fill('Password123'); // fill password
+    //await page.locator('.btn btn-secondary').click(); // click on sign up button in the modal
+    //await page.getByRole('button', { name: 'Close' }).first().click(); // click on close button to close the signup modal
+});
